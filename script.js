@@ -176,6 +176,13 @@ require(['vs/editor/editor.main'], function () {
           insertText: 'game.Workspace:GetChildren()',
           insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
           documentation: 'Get all children of a container'
+        },
+        {
+          label: 'printidentity',
+          kind: monaco.languages.CompletionItemKind.Function,
+          insertText: 'printidentity()',
+          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+          documentation: 'prints leve;'
         }
       ];
       return { suggestions: suggestions };
