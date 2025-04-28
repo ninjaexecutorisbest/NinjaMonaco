@@ -1,63 +1,36 @@
 body {
+  font-family: 'Consolas', 'Courier New', monospace;
+  background-color: #1e1e1e;
+  color: #fff;
   margin: 0;
   padding: 0;
-  background: #1e1e1e;
-  color: white;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-#topbar {
-  background: #252526;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-}
-
-#tabs {
-  display: flex;
-  flex: 1;
-}
-
-.tab {
-  background: #2d2d2d;
-  padding: 8px 16px;
-  margin-right: 5px;
-  border-radius: 5px 5px 0 0;
-  cursor: pointer;
-  user-select: none;
-}
-
-.tab.active {
-  background: #1e1e1e;
-  font-weight: bold;
-}
-
-#newTabBtn {
-  background: #0e639c;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-#editor-container {
-  flex: 1;
-  position: relative;
 }
 
 .editor {
-  width: 100%;
-  height: 100%;
-  display: none;
+  height: 80vh;
 }
 
-.editor.active {
-  display: block;
+.tab {
+  padding: 8px;
+  margin: 0 5px;
+  background: #333;
+  color: white;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.tab.active {
+  background: #007acc;
+}
+
+.rename-input {
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 5px;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 14px;
+  width: 120px;
 }
