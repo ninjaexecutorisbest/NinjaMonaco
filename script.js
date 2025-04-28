@@ -92,7 +92,16 @@ function createNewTab() {
   tab.className = 'tab';
   tab.innerText = 'Untitled ' + (tabIndex + 1);
   tab.dataset.index = tabIndex;
+
+  // Single click = switch tab
   tab.onclick = () => switchTab(tabIndex);
+
+  // Double click = rename tab
+  tab.ondblclick = (e) => {
+    e.stopPropagation();
+    renameTab(tab);
+  };
+
   document.getElementById('tabs').appendChild(tab);
 
   switchTab(tabIndex);
@@ -104,6 +113,14 @@ function switchTab(index) {
     document.querySelector(`.tab[data-index="${i}"]`).classList.toggle('active', i === index);
   });
   currentEditor = index;
+}
+
+function renameTab(tabElement) {
+  const currentName = tabElement.innerText;
+  const newName = prompt('Rename tab:', currentName);
+  if (newName && newName.trim() !== '') {
+    tabElement.innerText = newName.trim();
+  }
 }
 
 // --- Your Get Text Function ---
