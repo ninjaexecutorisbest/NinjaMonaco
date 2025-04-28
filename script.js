@@ -96,11 +96,8 @@ function createNewTab() {
   // Single click = switch tab
   tab.onclick = () => switchTab(tabIndex);
 
-  // Double click = rename tab
-  tab.ondblclick = (e) => {
-    e.stopPropagation();
-    renameTab(tab);
-  };
+  // Double click = rename tab in UI
+  tab.ondblclick = () => renameTab(tab);
 
   document.getElementById('tabs').appendChild(tab);
 
@@ -117,10 +114,25 @@ function switchTab(index) {
 
 function renameTab(tabElement) {
   const currentName = tabElement.innerText;
-  const newName = prompt('Rename tab:', currentName);
-  if (newName && newName.trim() !== '') {
-    tabElement.innerText = newName.trim();
-  }
+
+  // Create an input field for renaming
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = currentName;
+  input.className = 'rename-input';
+  input.onblur = () => {
+    tabElement.innerText = input.value.trim() || currentName;
+    tabElement.removeChild(input);
+  };
+  input.onkeydown = (e) => {
+    if (e.key === 'Enter') {
+      input.blur();
+    }
+  };
+
+  tabElement.innerText = '';
+  tabElement.appendChild(input);
+  input.focus();
 }
 
 // --- Your Get Text Function ---
