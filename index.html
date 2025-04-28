@@ -2,17 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Monaco UI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monaco Editor</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="topbar">
-    <div id="tabs"></div>
-    <button id="newTabBtn">+</button>
-  </div>
-  <div id="editor-container"></div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.39.0/min/vs/loader.min.js"></script>
+  <div id="tabs"></div>
+  <div id="editor-container" class="editor-container"></div>
+  <button id="newTabBtn">New Tab</button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
