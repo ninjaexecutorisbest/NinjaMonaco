@@ -13,7 +13,6 @@ require(['vs/editor/editor.main'], function () {
   monaco.languages.registerCompletionItemProvider('lua', {
     provideCompletionItems: () => {
       const suggestions = [
-        // General Lua constructs
         {
           label: 'function',
           kind: monaco.languages.CompletionItemKind.Keyword,
@@ -43,146 +42,25 @@ require(['vs/editor/editor.main'], function () {
           documentation: 'For loop'
         },
         {
+          label: 'print',
+          kind: monaco.languages.CompletionItemKind.Function,
+          insertText: 'print(${1:msg})',
+          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+          documentation: 'Print to output'
+        },
+        {
+          label: 'pairs',
+          kind: monaco.languages.CompletionItemKind.Function,
+          insertText: 'for ${1:key}, ${2:value} in pairs(${3:table}) do\n\t${0}\nend',
+          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+          documentation: 'Iterate over a table'
+        },
+        {
           label: 'while',
           kind: monaco.languages.CompletionItemKind.Keyword,
           insertText: 'while ${1:condition} do\n\t${0}\nend',
           insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
           documentation: 'While loop'
-        },
-
-        // Roblox specific functions for exploiting/hacking
-        {
-          label: 'game',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'game',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Access the game object'
-        },
-        {
-          label: 'workspace',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'workspace',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Access the workspace for manipulating parts and objects'
-        },
-        {
-          label: 'getService',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'game:GetService("${1:ServiceName}")',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Access a Roblox service'
-        },
-        {
-          label: 'players',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'game:GetService("Players")',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Access the Players service'
-        },
-        {
-          label: 'player',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'game.Players.LocalPlayer',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Access the local player'
-        },
-        {
-          label: 'findFirstChild',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'game.Workspace:FindFirstChild("${1:objectName}")',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Find an object by name in workspace'
-        },
-        {
-          label: 'setmetatable',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'setmetatable(${1:table}, ${2:metatable})',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Set the metatable for a table'
-        },
-        {
-          label: 'getmetatable',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'getmetatable(${1:table})',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Get the metatable of a table'
-        },
-        {
-          label: 'teleport',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = ${1:CFrame.new()}',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Teleport the player to a new position'
-        },
-        {
-          label: 'firetouchinterest',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'game:GetService("Workspace").TouchInterest:Fire(${1:part}, ${2:player})',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Fire a touch interest event'
-        },
-        {
-          label: 'clone',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: '${1:part}:Clone()',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Clone an object'
-        },
-        {
-          label: 'Destroy',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: '${1:part}:Destroy()',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Destroy an object'
-        },
-        {
-          label: 'makeJoints',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: '${1:part}:MakeJoints()',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Make joints for a part'
-        },
-        {
-          label: 'game.ReplicatedStorage',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'game.ReplicatedStorage',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Access ReplicatedStorage to store and retrieve game objects'
-        },
-        {
-          label: 'create',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'game:GetService("InsertService"):Create("${1:AssetId}")',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Create a new object in the game using InsertService'
-        },
-        {
-          label: 'setvalue',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: '${1:object}.Value = ${2:newValue}',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Set a value on an object'
-        },
-        {
-          label: 'ishidden',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'game.Workspace.${1:object}.Visible = false',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Set an object to be hidden'
-        },
-        {
-          label: 'getChildren',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'game.Workspace:GetChildren()',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'Get all children of a container'
-        },
-        {
-          label: 'printidentity',
-          kind: monaco.languages.CompletionItemKind.Function,
-          insertText: 'printidentity()',
-          insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-          documentation: 'prints leve;'
         }
       ];
       return { suggestions: suggestions };
@@ -202,7 +80,7 @@ function createNewTab() {
 
   // Create Monaco Editor instance
   const editor = monaco.editor.create(editorDiv, {
-    value: '-- New Roblox Lua file\n',
+    value: '-- New Lua file\n',
     language: 'lua',
     theme: 'vs-dark',
     automaticLayout: true
@@ -223,7 +101,7 @@ function createNewTab() {
 function switchTab(index) {
   editors.forEach((ed, i) => {
     document.getElementById('editor-' + i).classList.toggle('active', i === index);
-    document.querySelector(.tab[data-index="${i}"]).classList.toggle('active', i === index);
+    document.querySelector(`.tab[data-index="${i}"]`).classList.toggle('active', i === index);
   });
   currentEditor = index;
 }
