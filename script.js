@@ -92,7 +92,13 @@ function createNewTab() {
   tab.className = 'tab';
   tab.innerText = 'Untitled ' + (tabIndex + 1);
   tab.dataset.index = tabIndex;
+
+  // Single click = switch tab
   tab.onclick = () => switchTab(tabIndex);
+
+  // Double click = rename tab in UI
+  tab.ondblclick = () => renameTab(tab);
+
   document.getElementById('tabs').appendChild(tab);
 
   switchTab(tabIndex);
@@ -104,6 +110,29 @@ function switchTab(index) {
     document.querySelector(`.tab[data-index="${i}"]`).classList.toggle('active', i === index);
   });
   currentEditor = index;
+}
+
+function renameTab(tabElement) {
+  const currentName = tabElement.innerText;
+
+  // Create an input field for renaming
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = currentName;
+  input.className = 'rename-input';
+  input.onblur = () => {
+    tabElement.innerText = input.value.trim() || currentName;
+    tabElement.removeChild(input);
+  };
+  input.onkeydown = (e) => {
+    if (e.key === 'Enter') {
+      input.blur();
+    }
+  };
+
+  tabElement.innerText = '';
+  tabElement.appendChild(input);
+  input.focus();
 }
 
 // --- Your Get Text Function ---
